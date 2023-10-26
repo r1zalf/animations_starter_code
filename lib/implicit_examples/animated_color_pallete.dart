@@ -36,23 +36,22 @@ class _AnimatedColorPaletteState extends State<AnimatedColorPalette> {
       appBar: AppBar(
         title: const Text('Color Palette Generator'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            for (Color color in currentPalette)
-              Container(
-                width: 100,
-                height: 100,
-                color: color,
-                margin: const EdgeInsets.all(8),
-              ),
-            ElevatedButton(
-              onPressed: regeneratePalette,
-              child: const Text('Generate New Palette'),
+      bottomNavigationBar: ElevatedButton(
+        onPressed: regeneratePalette,
+        child: const Text('Generate New Palette'),
+      ),
+      body: ListView(
+        children: [
+          for (Color color in currentPalette)
+            AnimatedContainer(
+              width: 100,
+              height: 100,
+              color: color,
+              margin: const EdgeInsets.all(8),
+              duration: const Duration(milliseconds: 800),
+              curve: Curves.linear,
             ),
-          ],
-        ),
+        ],
       ),
     );
   }
